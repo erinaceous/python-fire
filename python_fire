@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# vim: set tabstop=4 shiftwidth=4 textwidth=79 cc=72,79:
+"""
+    python_fire: Executable script for python-fire.
+
+    Can be ran in training mode, or testing mode. Must use a dataset
+    compatible with the NSL-KDD datasets, in ARFF format.
+
+    In training mode, this script finds membership functions for all of
+    the attributes. As the training examples are labelled, it also
+    generates fuzzy rules for classifying examples as anomalous or
+    normal.
+
+    In testing mode, this script takes the generated membership functions
+    and rule sets and applies them to the given data. It outputs in CSV
+    format.
+
+    In live mode, this script takes data directly from a tcpdump stream
+    -- this can be a text file, or a live stream via stdin (Use '-' to
+    specify standard input). It prints alerts to the console when it
+    detects suspicious activity above a user-defined threshold.
+
+    Original Author: Owain Jones [github.com/erinaceous] [contact@odj.me]
+"""
+
+from __future__ import print_function
+import argparse
+import csv
+
+import fire

@@ -8,6 +8,8 @@ setup(
     version = '0.1',
     packages = find_packages(),
 
+    scripts = ['python_fire'],
+
     install_requires = [
         'matplotlib', 'numpy', 'scipy', 'scikit-learn', 'liac-arff'
     ],
