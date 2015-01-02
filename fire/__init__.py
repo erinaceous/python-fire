@@ -4,3 +4,8 @@
     Original Author: Owain Jones [github.com/erinaceous] [odj@aber.ac.uk]
 """
 
+__all__ = [
+    'data',
+    'fuzzy',
+    'utils'
+]

@@ -11,7 +11,7 @@ setup(
     scripts = ['python_fire'],
 
     install_requires = [
-        'matplotlib', 'numpy', 'scipy', 'scikit-learn', 'liac-arff'
+        'numpy', 'scipy', 'scikit-learn'
     ],
 
     author = 'Owain Jones',
