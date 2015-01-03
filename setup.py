@@ -11,7 +11,7 @@ setup(
     scripts = ['python_fire'],
 
     install_requires = [
-        'numpy', 'scipy', 'scikit-learn'
+        'numpy', 'scipy'
     ],
 
     author = 'Owain Jones',

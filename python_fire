@@ -24,7 +24,47 @@
 """
 
 from __future__ import print_function
+import fire.fuzzy
+import fire.data
 import argparse
-import csv
 
-import fire
+
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('mode',
+                        help='Can be "training", "testing" or "live"')
+    parser.add_argument('input',
+                        help='In training mode: path to input ARFF file. In ' +
+                             'testing mode: path to JSON parameters file. ' +
+                             'In live mode: stdin or path to raw tcpdump file')
+    return parser.parse_args()
+
+
+def training(args):
+    data = fire.data.ARFFReader(args.input)
+    print('Loading data from', args.input)
+    data.load()
+    clusters = fire.fuzzy.cmeans(data.data, data.attributes)
+    print(clusters)
+
+
+def testing(args):
+    pass
+
+
+def live(args):
+    pass
+
+
+modes = {
+    "training": training,
+    "testing": testing,
+    "live": live
+}
+
+
+if __name__ == '__main__':
+    args = parse_args()
+    if args.mode not in modes.keys():
+        raise Exception('Program mode not "training", "testing" or "live"')
+    modes[args.mode](args)

@@ -1,0 +1,3 @@
+[submodule "fuzzython"]
+	path = fuzzython
+	url = https://github.com/yudivian/fuzzython.git
