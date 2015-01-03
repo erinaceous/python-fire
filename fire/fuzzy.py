@@ -5,6 +5,7 @@
 """
 
 from __future__ import print_function
+import fuzzython.fsets.gaussian
 import random
 import numpy
 
@@ -20,8 +21,15 @@ SETS = {
 }
 
 
+# Membership functions!
+# Just use Gaussian for now.
+MF = {
+    'gaussian': lambda x: fuzzython.fsets.gaussian.Gaussian(*x)
+}
+
+
 def cmeans(data, attributes, sets=SETS, exponent=1.0, tolerance=0.2,
-           maxiter=1000, ignore=['class']):
+           maxiter=1000, ignore=['class'], mf=MF['gaussian']):
     """Uses the fuzzy C-means algorithm to calculate membership function
        centroids and exponents for all of the attributes/variables given.
 

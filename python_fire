@@ -33,6 +33,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode',
                         help='Can be "training", "testing" or "live"')
+    parser.add_argument('-f', default='gaussian',
+                        help='Membership function to use. Default: gaussian')
     parser.add_argument('input',
                         help='In training mode: path to input ARFF file. In ' +
                              'testing mode: path to JSON parameters file. ' +
@@ -44,7 +46,7 @@ def training(args):
     data = fire.data.ARFFReader(args.input)
     print('Loading data from', args.input)
     data.load()
-    clusters = fire.fuzzy.cmeans(data.data, data.attributes)
+    clusters = fire.fuzzy.cmeans(data.data, data.attributes, mf=args.f)
     print(clusters)
 
 
