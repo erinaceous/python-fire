@@ -8,7 +8,6 @@
 
 from __future__ import print_function
 from scipy.io.arff import loadarff
-import json
 
 
 def _get_file_object(inputfile=None):
@@ -50,35 +49,3 @@ class ARFFReader:
         self.data = arff_data[0]
         self.attributes = arff_data[1]
         return True
-
-
-class JSONReader:
-    """Wrapper class for JSON config files."""
-
-    def __init__(self, jsonfile=None):
-        self.inputstream = _get_file_object(jsonfile)
-        self.data = None
-
-    def load(self, jsonfile=None):
-        """Load config from a .json file. Returns True if loading was
-           successful."""
-        inputstream = _get_file_object(jsonfile)
-        if inputstream is None:
-            inputstream = self.inputstream
-        if inputstream is None:
-            return False
-
-        json_data = json.load(inputstream)
-        self.data = json_data
-        return True
-
-    def save(self):
-        """Saves config to the .json file this JSONReader instance was
-           initialized with. Returns True if saving was successful.
-           Overwrites old file.
-        """
-        if self.data is None or self.inputstream is None:
-            return False
-        json.dump(self.data, self.inputstream)
-        return True
-

@@ -7,5 +7,6 @@
 __all__ = [
     'data',
     'fuzzy',
-    'utils'
+    'utils',
+    'cmeans'
 ]
